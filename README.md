@@ -127,7 +127,7 @@ prevent/
 1. Clonar el repositorio
 
 ```bash
-git clone <url-del-repositorio>
+git clone git@github.com:garfdev42/prevent.git
 cd prevent
 ```
 
@@ -152,7 +152,7 @@ npx prisma db push
 npm run dev
 ```
 
-La aplicación estará disponible en http://localhost:3000
+La aplicación estará disponible en https://prevent-kohl.vercel.app/
 
 ## Scripts Disponibles
 
@@ -201,10 +201,3 @@ npm test
 **sessions** - Sesiones activas
 
 - Gestión de sesiones de usuario
-
-## Notas Técnicas
-
-- La aplicación no cuenta con diseño responsivo según especificaciones
-- Los nuevos usuarios se crean automáticamente con rol ADMIN
-- Las rutas protegidas redirigen a login si no hay sesión activa
-- Los botones de edición y eliminación solo son visibles para usuarios ADMIN
