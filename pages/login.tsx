@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Github, ArrowRight, Shield } from "lucide-react";
 
+// Página de inicio de sesión con autenticación de GitHub
 export default function Login() {
   const router = useRouter();
   const { data: session, status } = useSession();

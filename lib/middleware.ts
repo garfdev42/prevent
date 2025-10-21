@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./auth";
 
+// Tipo extendido de request con información del usuario autenticado
 export type AuthenticatedRequest = NextApiRequest & {
   user: {
     id: string;
@@ -11,6 +12,7 @@ export type AuthenticatedRequest = NextApiRequest & {
   };
 };
 
+// Middleware para proteger rutas de API que requieren autenticación
 export async function requireAuth(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -33,6 +35,7 @@ export async function requireAuth(
   return handler(authenticatedReq, res);
 }
 
+// Middleware para proteger rutas de API que requieren rol ADMIN
 export async function requireAdmin(
   req: NextApiRequest,
   res: NextApiResponse,

@@ -1,10 +1,12 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+// Utilidad para combinar clases de Tailwind CSS
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// Formatear números como moneda colombiana
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -13,6 +15,7 @@ export function formatCurrency(amount: number): string {
   }).format(amount);
 }
 
+// Formatear fechas en formato local colombiano
 export function formatDate(date: Date | string): string {
   const d = typeof date === "string" ? new Date(date) : date;
   return new Intl.DateTimeFormat("es-CO", {
@@ -22,6 +25,7 @@ export function formatDate(date: Date | string): string {
   }).format(d);
 }
 
+// Generar contenido CSV a partir de datos y encabezados
 export function generateCSV(data: any[], headers: string[]): string {
   const headerRow = headers.join(",");
   const rows = data.map((row) =>
@@ -37,6 +41,7 @@ export function generateCSV(data: any[], headers: string[]): string {
   return [headerRow, ...rows].join("\n");
 }
 
+// Descargar archivo CSV en el navegador
 export function downloadCSV(csvContent: string, filename: string): void {
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
   const link = document.createElement("a");

@@ -8,6 +8,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+// Modelo para cuentas OAuth (GitHub)
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -28,6 +29,7 @@ model Account {
   @@map("accounts")
 }
 
+// Modelo para sesiones de usuario
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
@@ -38,6 +40,7 @@ model Session {
   @@map("sessions")
 }
 
+// Modelo de usuario con rol ADMIN por defecto
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -56,6 +59,7 @@ model User {
   @@map("users")
 }
 
+// Modelo para tokens de verificación
 model VerificationToken {
   identifier String
   token      String   @unique
@@ -65,6 +69,7 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
+// Modelo para movimientos financieros (ingresos y egresos)
 model Movement {
   id        String   @id @default(cuid())
   concept   String

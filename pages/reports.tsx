@@ -29,6 +29,7 @@ interface BalanceData {
   }[];
 }
 
+// Página de reportes financieros (solo para administradores)
 export default function Reports() {
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -54,6 +55,7 @@ export default function Reports() {
     }
   }, [session, userRole]);
 
+  // Obtener datos de balance y reportes desde la API
   const fetchBalance = async () => {
     try {
       const res = await fetch("/api/reports/balance");
@@ -68,6 +70,7 @@ export default function Reports() {
     }
   };
 
+  // Generar y descargar reporte en formato CSV
   const handleDownloadCSV = () => {
     if (!balanceData) return;
 

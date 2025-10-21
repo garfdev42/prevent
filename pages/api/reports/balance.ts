@@ -2,11 +2,13 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/db";
 import { requireAdmin, AuthenticatedRequest } from "@/lib/middleware";
 
+// Endpoint para obtener balance y datos de reportes (solo ADMIN)
 async function handler(req: AuthenticatedRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     try {
       const movements = await prisma.movement.findMany();
 
+      // Calcular totales de ingresos y egresos
       const income = movements
         .filter((m) => m.type === "INCOME")
         .reduce((sum, m) => sum + m.amount, 0);
@@ -17,6 +19,7 @@ async function handler(req: AuthenticatedRequest, res: NextApiResponse) {
 
       const balance = income - expenses;
 
+      // Agrupar movimientos por mes para el gráfico
       const monthlyData = movements.reduce((acc: any[], movement) => {
         const month = new Date(movement.date).toLocaleDateString("es-CO", {
           year: "numeric",

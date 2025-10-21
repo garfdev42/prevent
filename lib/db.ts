@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
+// Instancia global de Prisma para evitar múltiples conexiones en desarrollo
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };

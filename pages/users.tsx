@@ -29,6 +29,7 @@ interface User {
   role: "USER" | "ADMIN";
 }
 
+// Página de gestión de usuarios (solo para administradores)
 export default function Users() {
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -60,6 +61,7 @@ export default function Users() {
     }
   }, [session, userRole]);
 
+  // Obtener lista de usuarios desde la API
   const fetchUsers = async () => {
     try {
       const res = await fetch("/api/users");
@@ -74,6 +76,7 @@ export default function Users() {
     }
   };
 
+  // Abrir diálogo de edición con datos del usuario
   const handleEditClick = (user: User) => {
     setSelectedUser(user);
     setFormData({
@@ -83,6 +86,7 @@ export default function Users() {
     setIsDialogOpen(true);
   };
 
+  // Actualizar usuario existente
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedUser) return;

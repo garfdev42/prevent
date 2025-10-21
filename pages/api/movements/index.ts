@@ -2,7 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/db";
 import { requireAuth, AuthenticatedRequest } from "@/lib/middleware";
 
+// Endpoint para obtener y crear movimientos financieros
 async function handler(req: AuthenticatedRequest, res: NextApiResponse) {
+  // Obtener lista de movimientos
   if (req.method === "GET") {
     try {
       const movements = await prisma.movement.findMany({
@@ -26,6 +28,7 @@ async function handler(req: AuthenticatedRequest, res: NextApiResponse) {
     }
   }
 
+  // Crear nuevo movimiento (solo ADMIN)
   if (req.method === "POST") {
     if (req.user.role !== "ADMIN") {
       return res

@@ -3,6 +3,7 @@ import GithubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "./db";
 
+// Configuración central de NextAuth para autenticación con GitHub
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -12,6 +13,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    // Extender la sesión para incluir id y rol del usuario
     async session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;

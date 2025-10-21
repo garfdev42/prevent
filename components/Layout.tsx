@@ -9,6 +9,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+// Layout principal con sidebar de navegación
 export default function Layout({ children }: LayoutProps) {
   const { data: session } = useSession();
   const router = useRouter();

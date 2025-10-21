@@ -36,6 +36,7 @@ interface Movement {
   };
 }
 
+// Página de gestión de ingresos y egresos
 export default function Movements() {
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -68,6 +69,7 @@ export default function Movements() {
     }
   }, [session]);
 
+  // Obtener lista de movimientos desde la API
   const fetchMovements = async () => {
     try {
       const res = await fetch("/api/movements");
@@ -82,6 +84,7 @@ export default function Movements() {
     }
   };
 
+  // Crear nuevo movimiento
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -113,6 +116,7 @@ export default function Movements() {
     }
   };
 
+  // Abrir diálogo de edición con datos del movimiento
   const handleEdit = (movement: Movement) => {
     setSelectedMovement(movement);
     setFormData({
@@ -124,6 +128,7 @@ export default function Movements() {
     setIsEditDialogOpen(true);
   };
 
+  // Actualizar movimiento existente
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedMovement) return;
@@ -157,6 +162,7 @@ export default function Movements() {
     }
   };
 
+  // Eliminar movimiento
   const handleDelete = async (id: string) => {
     if (!confirm("¿Estás seguro de que deseas eliminar este movimiento?")) {
       return;
